@@ -1,0 +1,91 @@
+.contact-page {
+    padding-top: 40px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.secondary{
+    margin-top: -2rem;
+    margin-bottom: 2rem;
+}
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1px; /* Reduced space between email and phone */
+}
+
+.contact-details p {
+    margin: 0;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.social-links a {
+    color: black;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.social-links a:hover {
+    opacity: 0.6;
+}
+
+.contact-form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 3rem;
+}
+
+.contact-form input, .contact-form textarea {
+    font-size: 16px;
+    border:none;
+    border-bottom: 0.1px solid rgb(216, 216, 216);
+    font-family: 'Raleway', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    margin-bottom: 10px;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    border-bottom: 1px solid #3b3b3b;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    
+}
+
+p{
+    font-weight: 500;
+}
+
+hr{
+    color: #ffffff(255, 255, 255);
+}
+
+.contact-form label{
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.contact-btn{
+    text-align: left;
+    border: none;
+    color: black;
+    font-size: 16px;
+    background-color: transparent;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 3;
+}

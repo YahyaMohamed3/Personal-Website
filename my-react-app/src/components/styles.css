@@ -1,0 +1,259 @@
+body {
+  margin: 0;
+}
+
+/* ----- Layout ----- */
+.layout {
+  display: flex;
+  flex-direction: row;
+  min-height: 85vh;
+  box-sizing: border-box;
+
+  /* allow space for overlay footer */
+  position: relative;
+  padding-bottom: 0px;
+}
+
+.column {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  border: none;
+}
+
+.column.middle {
+  flex: 1.5;
+  flex-direction: column;
+}
+
+.column + .column {
+  border-left: 0.5px solid rgba(0, 0, 0, 0.12); /* hairline */
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background-color: #3b3b3b;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  height: 30px;
+  align-items: center;
+}
+
+body {
+  margin: 0;
+}
+
+/* ----- Layout ----- */
+.layout {
+  display: flex;
+  flex-direction: row;
+  min-height: 60vh;
+  box-sizing: border-box;
+
+  /* allow space for overlay footer */
+  position: relative;
+  padding-bottom: 0px;
+}
+
+.column {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  border: none;
+}
+
+.column.middle {
+  flex: 1.5;
+  flex-direction: column;
+}
+
+.column + .column {
+  border-left: 0.5px solid rgba(0, 0, 0, 0.12); /* hairline */
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background-color: #3b3b3b;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  height: 30px;
+  align-items: center;
+}
+
+/* ----- Footer (exact same structure as layout) ----- */
+.footer {
+    z-index: 2;
+  display: flex;
+  flex-direction: row;
+  height: var(--footer-h, 80px);
+  box-sizing: border-box;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+}
+
+/* Footer columns use same exact styling as main columns */
+.footer .column {
+  flex: 1;
+  padding: 6px;
+  box-sizing: border-box;
+  border: none;
+}
+
+.footer .column.middle {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  padding: 0; /* Remove padding for middle footer column */
+  border-top: 0.5px solid rgba(201, 201, 201, 0.612); /* hairline */
+}
+
+/* Footer rows - 3 big divs stacked vertically */
+.footer-row {
+  flex: 1;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.612);
+}
+
+.footer-row:last-child {
+  border-bottom: none;
+}
+
+/* Make top and bottom rows taller */
+.footer-row-top,
+.footer-row-bottom {
+  flex: 2;
+}
+
+/* Keep ticker row compact */
+.footer-row-ticker {
+  flex: 1;
+}
+
+.footer .column + .column {
+  border-left: 0.5px solid rgba(0, 0, 0, 0.12); /* hairline */
+}
+
+/* Set footer height variable */
+:root {
+  --footer-h: 500px;
+}
+
+
+/* Add these styles to your styles.css file */
+
+/* Container for the ticker - constrains overflow */
+.ticker {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* CRITICAL: prevents content from escaping */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center vertically */
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  padding: 0; /* Remove all padding for max space usage */
+}
+
+/* Hover effect - black background */
+.ticker:hover {
+  background-color: black;
+}
+
+/* Change text color to white on hover */
+.ticker:hover .ticker__item {
+  color: white;
+}
+
+/* Change diamond color to white on hover */
+.ticker:hover .ticker__item::after {
+  color: white;
+}
+
+/* Inner wrapper that holds the scrolling groups */
+.ticker__inner {
+  display: flex;
+  width: fit-content;
+  animation: scroll 50s linear infinite;
+  will-change: transform; /* GPU acceleration for smooth animation */
+}
+
+/* Each group of items */
+.ticker__group {
+  display: flex;
+  gap: 0; /* Remove gap since we're using ::after for spacing */
+  align-items: center;
+}
+
+/* Animation that moves the ticker left - optimized for smoothness */
+@keyframes scroll {
+  0% {
+    transform: translate3d(0, 0, 0); /* Use 3D transform for GPU acceleration */
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0); /* moves exactly one group width */
+  }
+}
+
+/* Make sure the footer row containing ticker doesn't overflow */
+.footer-row {
+  flex: 1;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.142);
+  overflow: hidden; /* CRITICAL: contains the ticker */
+  position: relative; /* Creates positioning context */
+}
+
+/* Ensure middle column footer doesn't expand */
+.footer .column.middle {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border-top: 0.5px solid rgba(201, 201, 201, 0.612);
+  overflow: hidden; /* Add this to prevent expansion */
+}
+
+/* Item styling - optimized for space filling */
+.ticker__item {
+  font-size: clamp(50px, 8vw, 80px); /* Responsive, larger text */
+  font-weight: 500;
+  text-transform: uppercase;
+  display: inline-block;
+  white-space: nowrap;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s ease;
+  font-family: "Raleway", "Roboto", "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.01em; /* Tighter spacing */
+  line-height: 1;
+  padding: 0.2em 0; /* Minimal vertical padding */
+}
+
+.ticker__item:hover {
+  opacity: 0.7;
+}
+
+/* Add diamond separator after each item - reduced spacing */
+.ticker__item::after {
+  content: "◆";
+  margin-left: 1.2rem;
+  margin-right: 1.2rem;
+  color: #999999;
+  font-size: 0.45em; /* Relative to text size */
+  vertical-align: middle;
+  display: inline-block;
+  transform: translateY(-0.1em);
+  transition: color 0.3s ease;
+}
+
+/* Remove the after pseudo-element from the last item in each group to avoid double diamonds */
+.ticker__group .ticker__item:last-child::after {
+  content: "◆";
+  margin-left: 40px;
+  margin-right: 40px;
+}
