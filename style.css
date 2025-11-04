@@ -8,6 +8,89 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light mode styles */
+body.light-mode {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+body.light-mode .nav-link {
+    color: #212529;
+}
+
+body.light-mode .nav-link.active {
+    color: #212529 !important;
+}
+
+body.light-mode .nav-link:hover {
+    color: #0d6efd;
+}
+
+body.light-mode .nav-link::after {
+    background-color: #0d6efd;
+}
+
+body.light-mode .project-card {
+    background-color: #ffffff;
+    color: #212529;
+    border: 2px solid rgba(0, 0, 0, 0.125);
+}
+
+body.light-mode .project-card .card-overlay {
+    background: rgba(220, 220, 220, 0.97);
+}
+
+body.light-mode .overlay-text {
+    color: #000000;
+}
+
+body.light-mode .card {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    border: 2px solid rgba(0, 0, 0, 0.125) !important;
+}
+
+body.light-mode .bxs-star {
+    color: #000000 !important;
+}
+
+body.light-mode .view-project {
+    color: #212529;
+}
+
+body.light-mode .view-project:hover {
+    color: #0d6efd;
+}
+
+body.light-mode .light-social {
+    border-color: #212529;
+    color: #212529;
+}
+
+body.light-mode .light-social:hover {
+    background-color: #212529;
+    color: white;
+}
+
+body.light-mode .badge {
+    color: white;
+}
+
+body.light-mode footer {
+    color: #212529;
+}
+
+body.light-mode #theme-toggle {
+    border-color: #212529;
+    color: #212529;
+}
+
+body.light-mode #theme-toggle:hover {
+    background-color: #212529;
+    color: white;
 }
 
 /* Typography */
@@ -33,6 +116,10 @@ a {
     color: white;
     transition: all 0.3s ease;
     position: relative;
+}
+
+.nav-link.active {
+    color: white !important;
 }
 
 .nav-link::after {
@@ -443,6 +530,12 @@ h2 {
         padding: 0.75rem 0.5rem;
         text-align: center;
         font-size: 15px;
+    }
+    
+    /* Theme toggle button positioning for mobile */
+    #theme-toggle {
+        top: 60px !important;
+        right: 10px !important;
     }
     
     /* Header section */
