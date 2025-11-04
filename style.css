@@ -3,12 +3,11 @@
 
 /* Base styles */
 body {
-    background-color: white;
-    color: black;
+    background-color: #090909;
+    color: white;
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 /* Typography */
@@ -25,14 +24,36 @@ p {
 }
 
 a {
-    color: black;
+    color: white;
     text-decoration: none;
 }
 
 /* Navigation */
 .nav-link {
-    color: black;
-    transition: color 0.5s ease;
+    color: white;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    background-color: #4dabf7;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+    width: 80%;
+}
+
+.nav-link:hover {
+    color: #4dabf7;
+    transform: translateY(-2px);
 }
 
 /* Card Components */
@@ -49,13 +70,30 @@ a {
 .project-card {
     position: relative;
     overflow: hidden;
-    height: 500px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 550px;
+    background-color: #212529;
+    color: white;
+    box-shadow: 0 0 10px rgba(169, 169, 169, 0.22);
+    border: 2px solid #ffffff3f;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.project-card:nth-child(1) { animation-delay: 0.1s; }
+.project-card:nth-child(2) { animation-delay: 0.2s; }
+.project-card:nth-child(3) { animation-delay: 0.3s; }
+.project-card:nth-child(4) { animation-delay: 0.4s; }
+
+.project-card .card-body {
+    position: relative;
+    z-index: 1;
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(169, 169, 169, 0.4);
+    border-color: rgba(255, 255, 255, 0.6);
 }
 
 .project-card .card-overlay {
@@ -63,10 +101,12 @@ a {
     bottom: -100%;
     left: 0;
     width: 100%;
-    height: 27%;
+    min-height: 25%;
+    max-height: 50%;
     border-radius: 25px;
-    background: rgba(161, 161, 161, 0.1);
-    transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.5s ease, color 0.5s ease;
+    background: rgba(25, 25, 25, 0.97);
+    transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
 }
 
 .project-card:hover .card-overlay {
@@ -74,9 +114,17 @@ a {
 }
 
 .overlay-text {
-    padding: 20px;
+    padding: 15px 20px;
     text-align: center;
-    transition: color 0.5s ease;
+    color: white;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* Mini Projects specific overlay styling */
+section:last-of-type .project-card .card-overlay {
+    min-height: 20%;
+    max-height: 35%;
 }
 
 /* Certificate Cards */
@@ -88,11 +136,16 @@ a {
     margin: 5px;
     box-shadow: 0 0 10px rgba(142, 142, 142, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
 }
 
+.certificates .card:nth-child(1) { animation-delay: 0.1s; }
+.certificates .card:nth-child(2) { animation-delay: 0.2s; }
+
 .certificates .card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 12px 24px rgba(255, 255, 255, 0.15);
 }
 
 /* Skills Cards */
@@ -111,28 +164,30 @@ a {
 /* Project Link Styles */
 .view-project {
     position: relative;
+    color: white;
     transition: all 0.3s ease;
+    display: inline-block;
 }
 
 .view-project:hover {
     padding-right: 10px;
+    color: #4dabf7;
+    transform: translateX(3px);
 }
 
 .view-project i {
     transition: transform 0.3s ease;
+    display: inline-block;
 }
 
 .view-project:hover i {
-    transform: translateX(5px);
+    transform: translateX(5px) scale(1.1);
+    animation: pulse 0.6s infinite;
 }
 
-/* Theme Toggle */
-#theme-toggle {
-    transition: transform 0.3s ease;
-}
-
-#theme-toggle:hover {
-    transform: rotate(90deg);
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
 }
 
 /* Social Links */
@@ -141,46 +196,27 @@ a {
 }
 
 .light-social {
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
 .light-social:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 15px rgba(255, 255, 255, 0.2);
 }
 
-/* Dark Mode Styles */
-body.dark-mode {
-    background-color: #090909;
-    color: white;
+.light-social i {
+    transition: transform 0.3s ease;
 }
 
-body.dark-mode .nav-link {
-    color: white;
+.light-social:hover i {
+    animation: wiggle 0.5s ease;
 }
 
-body.dark-mode .project-card {
-    background-color: #212529;
-    color: white;
-    box-shadow: 0 0 10px rgba(169, 169, 169, 0.22);
-    border: 2px solid #ffffff3f;
-}
-
-body.dark-mode .project-card .card-overlay {
-    background: rgba(158, 158, 158, 0);
-}
-
-body.dark-mode .overlay-text {
-    color: white;
-}
-
-body.dark-mode .view-project {
-    color: rgb(255, 255, 255);
-}
-
-/* Light Mode Styles */
-body.light-mode .view-project {
-    color: rgb(0, 0, 0);
-    transition: color 0.5s ease;
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    75% { transform: rotate(10deg); }
 }
 
 /* Animations */
@@ -216,6 +252,40 @@ body.light-mode .view-project {
 /* Header Animation */
 header .container {
     animation: fadeInUp 0.8s ease-out;
+}
+
+h1 {
+    opacity: 0;
+    animation: slideInFromLeft 0.8s ease forwards;
+    animation-delay: 0.2s;
+}
+
+h2 {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: 0.1s;
+}
+
+/* Badge animations */
+.badge {
+    animation: fadeIn 0.5s ease forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.badge:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .about-me {
@@ -312,4 +382,335 @@ header .container {
 .about .btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* ========================================
+   MOBILE RESPONSIVE STYLES (SMALL SCREENS)
+   ======================================== */
+
+/* Mobile: 576px and below */
+@media (max-width: 576px) {
+    /* Typography adjustments */
+    h1 {
+        font-size: 2rem !important;
+        margin-bottom: 1rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 1.5rem;
+    }
+    
+    h5 {
+        font-size: 1.1rem !important;
+    }
+    
+    p, .card-text {
+        font-size: 14px !important;
+    }
+    
+    /* Navigation */
+    .navbar {
+        padding: 0.5rem 0;
+    }
+    
+    /* Hide hamburger menu on mobile */
+    .navbar-toggler {
+        display: none !important;
+    }
+    
+    /* Always show navbar links */
+    .navbar-collapse {
+        display: flex !important;
+        text-align: center;
+    }
+    
+    .navbar-nav {
+        display: flex;
+        flex-direction: row !important;
+        justify-content: space-evenly;
+        width: 100%;
+        padding: 0.5rem 0;
+        margin: 0;
+    }
+    
+    .nav-item {
+        flex: 1;
+        text-align: center;
+    }
+    
+    .nav-link {
+        padding: 0.75rem 0.5rem;
+        text-align: center;
+        font-size: 15px;
+    }
+    
+    /* Header section */
+    header {
+        padding: 2rem 0 !important;
+    }
+    
+    header .container {
+        padding: 0 1rem;
+    }
+    
+    header .col-md-6 {
+        text-align: center !important;
+        margin-bottom: 1rem;
+    }
+    
+    header p {
+        font-size: 14px !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    /* Social buttons in header */
+    header .light-social {
+        margin: 0.5rem;
+    }
+    
+    header .d-flex {
+        justify-content: center !important;
+        margin-top: 1rem !important;
+    }
+    
+    /* About section */
+    .about {
+        margin-top: 2rem !important;
+        padding: 0 1rem;
+    }
+    
+    .about .col-md-4 {
+        text-align: center;
+        margin-top: 0 !important;
+        margin-bottom: 2rem;
+    }
+    
+    .about img {
+        width: 250px !important;
+        height: 250px !important;
+        margin: 0 auto;
+    }
+    
+    .about h2 {
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .about-me {
+        font-size: 15px !important;
+        margin-bottom: 1rem;
+        text-align: left;
+        word-spacing: normal;
+        line-height: 1.6;
+    }
+    
+    .about .btn {
+        margin: 0.5rem;
+    }
+    
+    /* Main container */
+    main.container {
+        padding: 0 1rem !important;
+    }
+    
+    /* Sections spacing */
+    section {
+        margin-top: 2rem !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    section.my-5 {
+        margin-top: 2rem !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    section.mt-5 {
+        margin-top: 2rem !important;
+    }
+    
+    section.my-4 {
+        margin-top: 2rem !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    /* Experience cards */
+    .card.st {
+        width: 100% !important;
+        margin: 0 0 1.5rem 0 !important;
+        padding: 1rem !important;
+        min-height: auto !important;
+        height: auto !important;
+    }
+    
+    .card.st .card-body {
+        padding: 1rem !important;
+    }
+    
+    .card.st .card-title {
+        font-size: 1rem !important;
+        margin-bottom: 0.75rem;
+    }
+    
+    .card.st .card-text {
+        font-size: 13px !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    /* Project cards */
+    .project-card {
+        height: auto !important;
+        min-height: 400px;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .project-card .card-body {
+        padding: 1.5rem 1rem !important;
+    }
+    
+    .project-card .card-title {
+        font-size: 1.1rem !important;
+    }
+    
+    /* Project overlay adjustments for mobile */
+    .project-card .card-overlay {
+        position: static !important;
+        min-height: auto !important;
+        max-height: none !important;
+        background: rgba(25, 25, 25, 0.97);
+        margin-top: 1rem;
+        border-radius: 15px;
+        padding: 1rem;
+    }
+    
+    .overlay-text {
+        padding: 10px 15px;
+        font-size: 13px !important;
+    }
+    
+    /* Badges */
+    .badge {
+        font-size: 0.7rem !important;
+        padding: 0.4rem 0.8rem !important;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+    }
+    
+    /* View project links */
+    .view-project {
+        font-size: 13px !important;
+        display: inline-block;
+        margin-right: 0.75rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    /* Skills section */
+    .row {
+        margin: 0 !important;
+    }
+    
+    section.my-4 .card.st {
+        width: 100% !important;
+        height: auto !important;
+        margin: 0 0 1rem 0 !important;
+        padding: 1rem !important;
+    }
+    
+    section.my-4 .row {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Certificates */
+    .certificates .card {
+        margin: 0 0 1rem 0 !important;
+        padding: 1rem !important;
+    }
+    
+    .certificates .col-sm-6 {
+        margin-bottom: 1rem !important;
+    }
+    
+    /* Column adjustments */
+    .col-md-3,
+    .col-md-6,
+    .col-md-8,
+    .col-sm-6 {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 1.5rem 0 !important;
+        font-size: 13px;
+    }
+    
+    /* Icons sizing */
+    .bx {
+        font-size: 20px !important;
+    }
+    
+    .light-social i {
+        font-size: 20px !important;
+    }
+    
+    /* Email section in header */
+    header .bx-mail-send {
+        font-size: 18px !important;
+    }
+    
+    header .d-flex p {
+        font-size: 14px !important;
+    }
+    
+    /* Disable hover effects on mobile */
+    .project-card:hover {
+        transform: none;
+    }
+    
+    .card:hover {
+        transform: none !important;
+    }
+    
+    .nav-link:hover {
+        transform: none;
+    }
+    
+    .light-social:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* Tablet: 577px to 768px */
+@media (min-width: 577px) and (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+    
+    header {
+        padding: 3rem 0 !important;
+    }
+    
+    .project-card {
+        height: 500px !important;
+    }
+    
+    .about img {
+        width: 300px !important;
+        height: 300px !important;
+    }
+    
+    .card.st {
+        width: 100% !important;
+        margin: 0 0 1.5rem 0 !important;
+    }
+    
+    section.my-4 .card.st {
+        width: 100% !important;
+        margin: 0 0 1rem 0 !important;
+    }
 }
